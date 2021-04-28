@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Result"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_result"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/comfortaa_bold"/>
+
+    <TextView
+        android:id="@+id/resultLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 / 10"
+        android:textSize="30sp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/comfortaa_medium"/>
+
+    <TextView
+        android:id="@+id/totalScoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_tot_score"
+        android:textSize="20sp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/comfortaa_bold"/>
+
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:text="@string/btn_return"
+        android:backgroundTint="#43A047"
+        android:textSize="18sp"
+        android:layout_marginTop="120dp"
+        android:onClick="returnTop"/>
+</LinearLayout>

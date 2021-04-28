@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">JuegoQuiz_2</string>
+    <string name="tv_indiceq">Q1</string>
+    <string name="tv_question">Question</string>
+    <string name="answer1">Answer1</string>
+    <string name="answer2">Answer2</string>
+    <string name="answer3">Answer3</string>
+    <string name="answer4">Answer4</string>
+    <string name="tv_result">Resultado</string>
+    <string name="tv_score">3/5</string>
+    <string name="tv_tot_score">Puntuación Total:333</string>
+    <string name="btn_return">Volver</string>
+    <string name="tv_appgame">Eco Quiz</string>
+    <string name="btn_start">Start</string>
+    <string name="tv_count">Pregunta</string>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/countLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_count"
+        android:textSize="24sp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/questionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Question"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="@font/comfortaa_medium"
+        android:layout_marginTop="60dp"/>
+
+    <Button
+        android:id="@+id/answerBtn1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/purple_200"
+        android:onClick="checkAnswer"
+        android:text="Answer1"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:fontFamily="@font/comfortaa_regular"/>
+
+    <Button
+        android:id="@+id/answerBtn2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Answer2"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:backgroundTint="@color/purple_200"
+        android:layout_marginTop="16dp"
+        android:onClick="checkAnswer"
+        android:fontFamily="@font/comfortaa_regular"/>
+
+    <Button
+        android:id="@+id/answerBtn3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Answer3"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:backgroundTint="@color/purple_200"
+        android:layout_marginTop="16dp"
+        android:onClick="checkAnswer"
+        android:fontFamily="@font/comfortaa_regular"/>
+
+    <Button
+        android:id="@+id/answerBtn4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Answer4"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:backgroundTint="@color/purple_200"
+        android:layout_marginTop="8dp"
+        android:onClick="checkAnswer"
+        android:fontFamily="@font/comfortaa_regular"/>
+</LinearLayout>
