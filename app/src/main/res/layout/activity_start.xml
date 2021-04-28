@@ -13,8 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_appgame"
+        android:textStyle="bold"
         android:textSize="32sp"
-        android:textColor="@color/black"
+        android:textColor="@color/purple_500"
+        android:textAllCaps="true"
         android:fontFamily="@font/comfortaa_bold"
         android:layout_marginTop="120dp"/>
 
@@ -30,6 +32,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_start"
+        android:fontFamily="@font/comfortaa_regular"
         android:backgroundTint="#43A047"
         android:layout_marginTop="80dp"
         android:onClick="startQuiz"/>
