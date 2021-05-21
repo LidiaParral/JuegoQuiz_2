@@ -5,27 +5,45 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView countLabel, questionLabel;
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
+
+    private TextView countLabel, questionLabel, tvTime;
     private Button answerBtn1, answerBtn2, answerBtn3, answerBtn4;
+    VectorDrawable vector;
 
     private String rightAnswer;
     private int rightAnswerCount = 0;
     private int quizCount = 1;
     static final private int QUIZ_COUNT = 10;
+
+    CountDownTimer countDownTimer;
+    private ColorStateList textColorDefaultCd;
+    private long timeLeftInMillis;
 
     ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
 
@@ -87,6 +105,72 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        //TIME
+        tvTime = findViewById(R.id.tvTime);
+
+        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+
+        countDownTimer = new CountDownTimer(timeLeftInMillis,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                timeLeftInMillis = millisUntilFinished;
+
+                int minutes = (int) ((timeLeftInMillis / 1000) / 60);
+                int seconds = (int) ((timeLeftInMillis / 1000) % 60);
+
+                String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+                tvTime.setText(timeFormatted);
+                tvTime.setTextColor(Color.BLACK);
+
+                String alertTime = "";
+
+                if(timeLeftInMillis < 10000){
+                    tvTime.setTextColor(Color.RED);
+
+                }
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                timeLeftInMillis = 0;
+                tvTime.setTextColor(Color.RED);
+
+
+                AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+                alerta.setTitle("¡¡Oh, que lástima!!");
+                alerta.setMessage("No ha respondido a tiempo");
+
+
+                LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+                View timeout = layoutInflater.inflate(R.layout.imgtimeout,null);
+
+                alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        countDownTimer.cancel();
+                        showNextQuiz();
+                        countDownTimer.start();
+                    }
+                });
+                alerta.setView(timeout);
+                alerta.show();
+                quizCount++;
+
+            }
+
+
+
+        };
+
+
+
+
+
+
         // Create quizArray from quizData.
         for (int i = 0; i < quizData.length; i++) {
 
@@ -100,15 +184,25 @@ public class MainActivity extends AppCompatActivity {
 
             // Add tmpArray to quizArray.
             quizArray.add(tmpArray);
+
+
+
         }
+
 
         showNextQuiz();
     }
 
+
+
     public void showNextQuiz() {
+
+        countDownTimer.start();
+
 
         // Update quizCountLabel.
         countLabel.setText("Pregunta nº" + quizCount);
+
 
         // Generate random number between 0 and 14 (quizArray's size - 1)
         Random random = new Random();
@@ -122,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         questionLabel.setText(quiz.get(0));
         rightAnswer = quiz.get(1);
 
+
         // Remove "Country" from quiz and Shuffle choices.
         quiz.remove(0);
         Collections.shuffle(quiz);
@@ -134,9 +229,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Remove this quiz from quizArray.
         quizArray.remove(randomNum);
+
+
+
     }
 
     public void checkAnswer(View view) {
+
+        countDownTimer.cancel();
 
         // Get pushed button.
         Button answerBtn = findViewById(view.getId());
@@ -149,15 +249,30 @@ public class MainActivity extends AppCompatActivity {
             alertTitle = "¡Correcto!";
             rightAnswerCount++;
 
+
+
         } else {
             // Incorrect
             alertTitle = "¡Oh, Incorrecto!";
         }
 
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View correct = layoutInflater.inflate(R.layout.imgcorrect,null);
+        LayoutInflater layoutInflater2 = LayoutInflater.from(MainActivity.this);
+        View incorrect = layoutInflater2.inflate(R.layout.imgincorrect,null);
+
+
         // Create AlertDialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(alertTitle);
         builder.setMessage("Respuesta correcta : " + rightAnswer);
+
+        if(alertTitle.equals("¡Correcto!")){
+            builder.setView(correct);
+        } else {
+            builder.setView(incorrect);
+        }
+
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -173,8 +288,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         builder.setCancelable(false);
         builder.show();
     }
+
+
 
 }

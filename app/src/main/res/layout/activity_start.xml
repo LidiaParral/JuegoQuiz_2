@@ -23,7 +23,7 @@
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/screen_1"/>
 
 
@@ -32,8 +32,10 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_start"
+        android:textSize="20sp"
         android:fontFamily="@font/comfortaa_regular"
         android:backgroundTint="#43A047"
+        app:cornerRadius = "20dp"
         android:layout_marginTop="80dp"
         android:onClick="startQuiz"/>
 </LinearLayout>
